@@ -28,10 +28,21 @@
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--page);color:var(--text);line-height:1.5;font-size:14px}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:100;background:var(--sf-navy);display:flex;align-items:center;padding:0 1.5rem;height:50px;box-shadow:0 2px 8px rgba(0,0,0,.25);gap:0}
+nav{position:sticky;top:0;z-index:100;background:var(--sf-navy);display:flex;align-items:center;padding:0 1.5rem;height:50px;box-shadow:0 2px 8px rgba(0,0,0,.25);gap:0;flex-wrap:nowrap}
 .nav-brand{color:#fff;font-weight:700;font-size:.85rem;letter-spacing:.02em;margin-right:1.5rem;white-space:nowrap;flex-shrink:0}
 nav a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.72rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:0 .9rem;height:50px;display:flex;align-items:center;border-bottom:3px solid transparent;transition:color .15s,border-color .15s;white-space:nowrap}
 nav a:hover{color:#fff;border-bottom-color:var(--sf-blue)}
+.nav-archive-wrap{position:relative;margin-left:auto;flex-shrink:0}
+.nav-archive-btn{color:rgba(255,255,255,.7);background:none;border:1px solid rgba(255,255,255,.25);border-radius:4px;font-size:.7rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:.3rem .75rem;cursor:pointer;height:34px;display:flex;align-items:center;gap:.3rem}
+.nav-archive-btn:hover{color:#fff;background:rgba(255,255,255,.1)}
+.nav-archive-drop{display:none;position:absolute;right:0;top:calc(100% + 6px);background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 8px 24px rgba(0,0,0,.14);min-width:190px;z-index:200;overflow:hidden}
+.nav-archive-drop.open{display:block}
+.nav-archive-drop a{display:block;padding:.55rem 1rem;font-size:.78rem;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);text-transform:none;letter-spacing:normal;font-weight:500;height:auto}
+.nav-archive-drop a:last-child{border-bottom:none}
+.nav-archive-drop a:hover{background:#F3F4F6}
+.nav-archive-drop .arc-current{font-weight:700;color:var(--sf-navy)}
+.archive-badge{display:inline-block;background:rgba(255,200,0,.2);border:1px solid rgba(255,200,0,.4);border-radius:100px;padding:.2rem .75rem;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#FDE68A;margin-bottom:.75rem;margin-left:.5rem}
+.archive-notice{background:#FFFBEB;border:1px solid #FCD34D;border-radius:var(--radius);padding:.85rem 1.1rem;font-size:.8rem;color:#92400E;margin-bottom:1.5rem}
 
 /* HERO */
 .hero{background:linear-gradient(140deg,#032D60 0%,#0b4f8a 60%,#0d6eaa 100%);color:#fff;padding:2.5rem 1.5rem 2rem}
@@ -71,6 +82,9 @@ section{margin-bottom:2.25rem}
 .ac.new-entry::after{content:"NEW";position:absolute;top:.6rem;right:.75rem;font-size:.6rem;font-weight:800;letter-spacing:.08em;background:var(--critical-bg);color:var(--critical);padding:.1rem .4rem;border-radius:100px}
 .ac.warn.new-entry::after{background:var(--warning-bg);color:var(--warning)}
 .ac-org{font-size:.85rem;font-weight:700}
+.ac-type-tag{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:100px;padding:.1rem .45rem;margin-left:.4rem;vertical-align:middle}
+.ac-type-tag.mc{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE}
+.ac-type-tag.storage{background:#FFF7ED;color:#C2410C;border:1px solid #FED7AA}
 .ac-lic{font-size:.72rem;color:var(--muted);margin-top:.1rem}
 .ac-row{display:flex;align-items:baseline;gap:.5rem;margin-top:.5rem}
 .ac-pct{font-size:2rem;font-weight:800;line-height:1;color:var(--critical)}
@@ -85,7 +99,7 @@ section{margin-bottom:2.25rem}
 .bar-fill.caut{background:#F59E0B}
 
 /* TABLE CARD */
-.tc{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:1rem}
+.tc{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:clip;margin-bottom:1rem}
 .tc+.tc{margin-top:1rem}
 .sub-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:.55rem 1rem;background:#F8FAFC;border-bottom:1px solid var(--border)}
 table{width:100%;border-collapse:collapse;font-size:.82rem}
@@ -96,6 +110,7 @@ tr:last-child td{border-bottom:none}
 .num{font-variant-numeric:tabular-nums}
 .mono{font-family:'SF Mono','Fira Code',monospace;font-size:.75rem;color:var(--muted)}
 .org-hdr td{background:#F1F5F9;font-weight:700;font-size:.77rem;color:var(--sf-navy);padding:.55rem .9rem;border-top:2px solid var(--border)}
+.col-repeat-hdr th{border-top:48px solid var(--page);border-bottom:6px solid var(--page)}
 .org-hdr td span{font-weight:400;color:#94A3B8}
 .sub td:first-child{padding-left:1.75rem;color:var(--muted);font-size:.78rem}
 
@@ -111,6 +126,22 @@ tr:last-child td{border-bottom:none}
 /* SHELFWARE */
 .sw-amt{font-weight:700;color:var(--warning);font-size:1rem}
 .sw-row{background:#FFFBEB}
+
+/* FLEX TRACKER */
+.flex-summary{display:flex;gap:1rem;flex-wrap:wrap;padding:1rem 1rem .75rem;border-bottom:1px solid var(--border)}
+.flex-stat{background:#F8FAFC;border:1px solid var(--border);border-radius:8px;padding:.6rem .9rem;min-width:130px}
+.flex-stat-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:.25rem}
+.flex-stat-val{font-size:1.1rem;font-weight:700;color:var(--sf-navy)}
+.flex-stat-val.warn{color:var(--warning)}
+.flex-stat-val.crit{color:var(--critical)}
+.flex-stat-sub{font-size:.7rem;color:var(--muted);margin-top:.1rem}
+.oe-month{background:#EFF6FF}
+tr.oe-month td{color:var(--sf-navy)}
+
+/* ORDERS LOG */
+.ord-executed{color:#16A34A;font-weight:600}
+.ord-pending{color:var(--warning);font-weight:600}
+.ord-empty{padding:2rem;text-align:center;color:var(--muted);font-style:italic;font-size:.82rem}
 
 /* LEGEND */
 .legend{display:flex;gap:1.25rem;flex-wrap:wrap;margin-bottom:1rem}
@@ -136,6 +167,7 @@ tr:last-child td{border-bottom:none}
 .topic-tag{display:inline-block;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;border-radius:100px;padding:.12rem .5rem;margin-bottom:.45rem}
 .topic-tag.status-check{background:#FEF3C7;color:#92400E;border:1px solid #FCD34D}
 .topic-tag.recommendation{background:#ECFDF5;color:#065F46;border:1px solid #6EE7B7}
+.topic-tag.escalation{background:#FEE2E2;color:#991B1B;border:1px solid #FCA5A5}
 .topic-title{font-weight:700;font-size:.88rem;color:var(--text);margin:0 0 .4rem}
 .topic-card p{font-size:.78rem;color:var(--muted);line-height:1.5;margin:0}
 .topic-card ul{margin:.3rem 0 0 1rem;padding:0;font-size:.78rem;color:var(--muted);line-height:1.6}
@@ -188,10 +220,22 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
   <a href="#agenda">Agenda</a>
   <a href="#alerts">Alerts</a>
   <a href="#org-status">Org Status</a>
+  <a href="#flex-tracker">Flex Users</a>
   <a href="#community">Community</a>
   <a href="#mc">Marketing Cloud</a>
   <a href="#entitlements">Entitlements</a>
   <a href="#shelfware">Shelfware</a>
+  <a href="#orders-log">Orders</a>
+  <div class="nav-archive-wrap">
+    <button class="nav-archive-btn">&#128197; Archive &#9662;</button>
+    <div class="nav-archive-drop">
+      <a href="archive/2026-02.html">February 2026</a>
+      <a href="archive/2026-03.html">March 2026</a>
+      <a href="archive/2026-04.html">April 2026</a>
+      <a href="archive/2026-06.html">June 2026</a>
+      <a href="archive/2026-07.html">July 2026</a>
+    </div>
+  </div>
 </nav>
 
 <div class="hero" id="overview">
@@ -318,6 +362,18 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
         </ul>
       </div>
 
+
+      <div class="topic-card">
+        <span class="topic-tag escalation">Escalation</span>
+        <p class="topic-title">Platform Encryption — BYOK + Einstein Data Detect</p>
+        <ul>
+          <li><strong>BYOK Gap</strong> — Platform-level BYOK was represented as available on Hyperforce; HCSC made architectural decisions on this basis. VOC escalation and roadmap clarity requested.</li>
+          <li><strong>Einstein Data Detect</strong> — Requires full Shield bundle (PE + FAT + EM together). Most HCSC orgs hold all three components individually; SKU swap to Shield package activates Data Detect at no net-new spend.</li>
+          <li><strong>FAT Delta Orgs</strong> — PEP / Unified Sales App, Blue Door, and BCBS-FEP are missing Field Audit Trail; Shield uplift for those orgs is scoped to the FAT delta only.</li>
+          <li><strong>Next step:</strong> Meeting with Mukesh — available Thu 7/30 or Fri 7/31 to discuss SKU swap rationale.</li>
+        </ul>
+      </div>
+
     </div>
   </section>
 
@@ -325,7 +381,7 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
   <section id="alerts">
     <div class="sec-header">
       <span class="sec-eye">Action Required</span>
-      <h2 class="sec-title">Capacity Alerts — Orgs ≥ 90%</h2>
+      <h2 class="sec-title">Capacity Alerts — Licenses, Storage &amp; Marketing Cloud</h2>
     </div>
     <div class="alert-grid">
 
@@ -392,10 +448,47 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
         <div class="ac-proj safe">&#8595; Flat &#183; 298 seats remain &#8212; no near-term cap risk (4 months data)</div>
       </div>
 
+      <div class="ac">
+        <div class="ac-org">Enterprise Governance Org <span class="ac-type-tag mc">Marketing Cloud</span></div>
+        <div class="ac-lic">Corporate Edition Contacts &nbsp;·&nbsp; Ent Gov · USA600</div>
+        <div class="ac-row"><div class="ac-pct">40×</div><div class="ac-change up">↑ over contracted limit</div></div>
+        <div class="ac-used">1,823,767 contacts used &nbsp;·&nbsp; contracted limit: 45,000 &nbsp;·&nbsp; <strong>+1,778,767 over limit</strong></div>
+        <div class="bar"><div class="bar-fill crit" style="width:100%"></div></div>
+        <div class="ac-proj urgent">&#9889; ~40× over contracted allotment — remediation required</div>
+      </div>
+
+      <div class="ac">
+        <div class="ac-org">HCSC (Producer) <span class="ac-type-tag mc">Marketing Cloud</span></div>
+        <div class="ac-lic">Corporate Edition Contacts &nbsp;·&nbsp; Producer Account</div>
+        <div class="ac-row"><div class="ac-pct">99.4%</div><div class="ac-change up">↑ approaching limit</div></div>
+        <div class="ac-used">810,158 contacts used of 815,000 contracted &nbsp;·&nbsp; 4,842 remaining</div>
+        <div class="bar"><div class="bar-fill crit" style="width:99.4%"></div></div>
+        <div class="ac-proj urgent">&#9889; Limit imminent — 4,842 contacts remaining</div>
+      </div>
+
+      <div class="ac warn">
+        <div class="ac-org">Provider Management <span class="ac-type-tag storage">Storage</span></div>
+        <div class="ac-lic">Data Storage &nbsp;·&nbsp; SELA · USA778</div>
+        <div class="ac-row"><div class="ac-pct">93.1%</div><div class="ac-change up">↑ +7 GB MoM</div></div>
+        <div class="ac-used">458.1 GB used of 492.3 GB contracted &nbsp;·&nbsp; 34.2 GB remaining</div>
+        <div class="bar"><div class="bar-fill warn" style="width:93.1%"></div></div>
+        <div class="ac-proj notice">~5 months at current pace (+7 GB/mo)</div>
+      </div>
+
+      <div class="ac warn">
+        <div class="ac-org">HealthSpring GBS <span class="ac-type-tag mc">Marketing Cloud</span></div>
+        <div class="ac-lic">Enterprise Plus Edition Contacts</div>
+        <div class="ac-row"><div class="ac-pct">92.4%</div><div class="ac-change up">↑ trend</div></div>
+        <div class="ac-used">19,393,696 contacts used of 21,000,000 contracted &nbsp;·&nbsp; 1,606,304 remaining</div>
+        <div class="bar"><div class="bar-fill warn" style="width:92.4%"></div></div>
+        <div class="ac-proj notice">~1.6M contacts remain before limit</div>
+      </div>
+
     </div>
     <p style="font-size:.75rem;color:var(--muted);margin-top:.6rem">
       ↑ <strong>Escalations:</strong> Dearborn PNM moved from Warning to Critical; Healthspring Knowledge is a new entrant.
       &nbsp;&nbsp;↓ <strong>Improving:</strong> WIM (-15) and CareAllies (-11) are tracking downward.
+      &nbsp;&nbsp;<strong>New this month:</strong> Storage and Marketing Cloud contact utilization now tracked alongside license seats — Enterprise Governance contacts require remediation.
     </p>
   </section>
 
@@ -577,15 +670,8 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
             <td class="c"><span class="b b-warn">Warning</span></td>
           </tr>
 
-          <!-- Over 65 -->
-          <tr class="org-hdr"><td colspan="8">Over 65 / Government &nbsp;<span>SELA · USA746 — Consolidating into uCRM, no active license lines</span></td></tr>
-          <tr>
-            <td colspan="7" class="sub" style="color:#94A3B8;font-style:italic">Org migrating to uCRM — no active contracted licenses to report</td>
-            <td class="c"><span class="b b-neu">Inactive</span></td>
-          </tr>
-
           <!-- uCRM -->
-          <tr class="org-hdr"><td colspan="8">uCRM (Over 65 + Retail U65 merging) &nbsp;<span>SELA · USA632 · Data: 72.8 / 155.0 GB · File: 267.4 GB / 7.1 TB</span></td></tr>
+          <tr class="org-hdr"><td colspan="8">uCRM (MediCare Retail) &nbsp;<span>SELA · USA632 · Data: 72.8 / 155.0 GB · File: 267.4 GB / 7.1 TB</span></td></tr>
           <tr>
             <td class="sub">Health Cloud - Service - UE</td>
             <td class="mono">00D5Y000001b220</td>
@@ -691,6 +777,71 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
     </div>
   </section>
 
+
+  <!-- FLEX TRACKER -->
+  <section id="flex-tracker">
+    <div class="sec-header">
+      <span class="sec-eye">ACE Org · Health Cloud RUL</span>
+      <h2 class="sec-title">Flex User Consumption — Open Enrollment Tracker</h2>
+    </div>
+    <div class="tc" style="overflow-x:auto">
+      <div class="flex-summary">
+        <div class="flex-stat">
+          <div class="flex-stat-label">Annual Bank</div>
+          <div class="flex-stat-val">18,000</div>
+          <div class="flex-stat-sub">user-months · $30.00/unit</div>
+        </div>
+        <div class="flex-stat">
+          <div class="flex-stat-label">Consumed YTD</div>
+          <div class="flex-stat-val">0</div>
+          <div class="flex-stat-sub">pre-OE season</div>
+        </div>
+        <div class="flex-stat">
+          <div class="flex-stat-label">Remaining</div>
+          <div class="flex-stat-val">18,000</div>
+          <div class="flex-stat-sub">100% of bank</div>
+        </div>
+        <div class="flex-stat">
+          <div class="flex-stat-label">Overage Rate</div>
+          <div class="flex-stat-val warn">$45.00</div>
+          <div class="flex-stat-sub">per user-month (1.5×) · billed in arrears</div>
+        </div>
+        <div class="flex-stat">
+          <div class="flex-stat-label">Annual Term</div>
+          <div class="flex-stat-val" style="font-size:.85rem">Confirm from SELA</div>
+          <div class="flex-stat-sub">No rollover · audit rights apply</div>
+        </div>
+      </div>
+      <div class="sub-label">Consumption begins when unique daily logins exceed provisioned full-use seats &nbsp;·&nbsp; OE season highlighted</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th class="r">Flex Users Consumed</th>
+            <th class="r">Running Total</th>
+            <th class="r">Bank Remaining</th>
+            <th class="r">% Bank Used</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Jul '26</td><td class="r num">—</td><td class="r num">—</td><td class="r num">18,000</td><td class="r">0%</td><td style="color:var(--muted);font-style:italic">Pre-season baseline</td></tr>
+          <tr><td>Aug '26</td><td class="r num">—</td><td class="r num">—</td><td class="r num">18,000</td><td class="r">0%</td><td style="color:var(--muted)">—</td></tr>
+          <tr><td>Sep '26</td><td class="r num">—</td><td class="r num">—</td><td class="r num">18,000</td><td class="r">0%</td><td style="color:var(--muted)">—</td></tr>
+          <tr class="oe-month"><td><strong>Oct '26</strong> <span style="font-size:.68rem;color:var(--sf-blue);font-weight:600">OE</span></td><td class="r num">—</td><td class="r num">—</td><td class="r num">18,000</td><td class="r">—</td><td style="color:var(--muted);font-style:italic">Open Enrollment opens</td></tr>
+          <tr class="oe-month"><td><strong>Nov '26</strong> <span style="font-size:.68rem;color:var(--sf-blue);font-weight:600">OE</span></td><td class="r num">—</td><td class="r num">—</td><td class="r num">—</td><td class="r">—</td><td style="color:var(--muted)">—</td></tr>
+          <tr class="oe-month"><td><strong>Dec '26</strong> <span style="font-size:.68rem;color:var(--sf-blue);font-weight:600">OE</span></td><td class="r num">—</td><td class="r num">—</td><td class="r num">—</td><td class="r">—</td><td style="color:var(--muted)">—</td></tr>
+          <tr class="oe-month"><td><strong>Jan '27</strong> <span style="font-size:.68rem;color:var(--sf-blue);font-weight:600">OE</span></td><td class="r num">—</td><td class="r num">—</td><td class="r num">—</td><td class="r">—</td><td style="color:var(--muted)">—</td></tr>
+          <tr class="oe-month"><td><strong>Feb '27</strong> <span style="font-size:.68rem;color:var(--sf-blue);font-weight:600">OE</span></td><td class="r num">—</td><td class="r num">—</td><td class="r num">—</td><td class="r">—</td><td style="color:var(--muted)">OE closes</td></tr>
+          <tr><td>Mar '27</td><td class="r num">—</td><td class="r num">—</td><td class="r num">—</td><td class="r">—</td><td style="color:var(--muted)">—</td></tr>
+          <tr><td>Apr '27</td><td class="r num">—</td><td class="r num">—</td><td class="r num">—</td><td class="r">—</td><td style="color:var(--muted)">—</td></tr>
+          <tr><td>May '27</td><td class="r num">—</td><td class="r num">—</td><td class="r num">—</td><td class="r">—</td><td style="color:var(--muted)">—</td></tr>
+          <tr><td>Jun '27</td><td class="r num">—</td><td class="r num">—</td><td class="r num">—</td><td class="r">—</td><td style="color:var(--muted)">Term end / bank forfeited if unused</td></tr>
+        </tbody>
+      </table>
+      <div style="padding:.5rem .9rem;font-size:.72rem;color:var(--muted)">Org: ACE &nbsp;·&nbsp; SKU: Health Cloud – Service – UE (Restricted Use) &nbsp;·&nbsp; 18,000 user-months · $30.00/unit &nbsp;·&nbsp; Overage: 1.5× = $45.00/user-month &nbsp;·&nbsp; Segregated profile required; Salesforce audit rights apply</div>
+    </div>
+  </section>
 
   <!-- COMMUNITY LOGINS -->
   <section id="community">
@@ -959,7 +1110,6 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
           <tr><td>Enterprise Governance</td><td class="c">✓</td><td class="c">✓</td><td class="c">✓</td><td class="c">2</td><td class="c">✓</td><td class="c">—</td><td class="c">—</td><td class="c">—</td></tr>
           <tr><td>Provider Mgmt</td><td class="c">✓</td><td class="c">✓</td><td class="c">✓</td><td class="c">1</td><td class="c">✓</td><td class="c">✓</td><td class="c">—</td><td class="c">—</td></tr>
           <tr><td>Unified Sales App (Stop Loss)</td><td class="c">✓</td><td class="c">—</td><td class="c">✓</td><td class="c">1</td><td class="c">✓</td><td class="c">✓</td><td class="c">—</td><td class="c">—</td></tr>
-          <tr><td>65 and Older / Government</td><td class="c">✓</td><td class="c">—</td><td class="c">✓</td><td class="c">1</td><td class="c">—</td><td class="c">—</td><td class="c">—</td><td class="c">—</td></tr>
           <tr><td>WIM</td><td class="c">✓</td><td class="c">✓</td><td class="c">✓</td><td class="c">1</td><td class="c">✓</td><td class="c">✓</td><td class="c">2</td><td class="c">—</td></tr>
           <tr><td>ACE</td><td class="c">✓</td><td class="c">✓</td><td class="c">✓</td><td class="c">1</td><td class="c">✓</td><td class="c">✓</td><td class="c">—</td><td class="c">1</td></tr>
           <tr><td>CareAllies</td><td class="c">✓</td><td class="c">✓</td><td class="c">✓</td><td class="c">—</td><td class="c">✓</td><td class="c">✓</td><td class="c">—</td><td class="c">—</td></tr>
@@ -995,6 +1145,87 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
             <td>546 SSC UE (Svc) contracted; only 154 provisioned (28%). Copado admin org — low usage by design but still billing.</td>
           </tr>
 
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ORDERS LOG -->
+  <section id="orders-log">
+    <div class="sec-header">
+      <span class="sec-eye">Billing &amp; Invoicing</span>
+      <h2 class="sec-title">Completed Orders &amp; PO Log</h2>
+    </div>
+    <div class="tc" style="overflow-x:auto">
+      <div class="sub-label">Executed order forms with corresponding PO numbers for invoice matching &nbsp;·&nbsp; Grant Ashley access for reconciliation</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Order Description</th>
+            <th>Org</th>
+            <th>Quote #</th>
+            <th>PO #</th>
+            <th>Executed Date</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Agentforce Professional Services Extension</td>
+            <td>Health Care Service Corporation (ACE)</td>
+            <td class="mono">Q-11666095</td>
+            <td class="mono">10000000130714</td>
+            <td>2026-06-24</td>
+            <td>ZIP8185</td>
+          </tr>
+          <tr>
+            <td>Marketing Cloud Renewal</td>
+            <td>HCSC – Dearborn Life Insurance</td>
+            <td class="mono">Q-11510745</td>
+            <td style="color:var(--muted)">No PO</td>
+            <td>2026-06-08</td>
+            <td>Signed OF on file</td>
+          </tr>
+          <tr>
+            <td>Health Cloud Add-On — 6,503 Licenses</td>
+            <td>Health Care Service Corporation (HealthSpring)</td>
+            <td class="mono">Q-11295388</td>
+            <td class="mono">10000000130239</td>
+            <td>2026-05-26</td>
+            <td>ZIP7184</td>
+          </tr>
+          <tr>
+            <td>Sales Cloud (Courtesy Add-On)</td>
+            <td>Health Care Service Corporation (HealthSpring)</td>
+            <td class="mono">Q-11656332</td>
+            <td style="color:var(--muted)">No PO</td>
+            <td>2026-05-06</td>
+            <td>Courtesy order; no charge</td>
+          </tr>
+          <tr>
+            <td>Marketing Cloud Add-On — Additional Business Units</td>
+            <td>HCSC – Dearborn Life Insurance</td>
+            <td class="mono">Q-11478877</td>
+            <td style="color:var(--muted)">No PO</td>
+            <td>2026-03-26</td>
+            <td>Signed OF on file</td>
+          </tr>
+          <tr>
+            <td>Health Cloud Add-On — 200 Licenses</td>
+            <td>Health Care Service Corporation (HealthSpring)</td>
+            <td class="mono">Q-11289351</td>
+            <td class="mono">10000000127877</td>
+            <td>2026-03-17</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Marketing Cloud Renewal — Medicare GBS</td>
+            <td>Health Care Service Corporation (HealthSpring)</td>
+            <td class="mono">Q-11138138</td>
+            <td class="mono">10000000127669</td>
+            <td>2026-01-30</td>
+            <td>ZIP6062</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -1063,6 +1294,36 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+</script>
+<script>
+// Repeat column header row before each org group (skip first — real thead covers it)
+(function () {
+  var tbody = document.querySelector('#org-status table tbody');
+  if (!tbody) return;
+  var orgHdrs = Array.from(tbody.querySelectorAll('.org-hdr'));
+  orgHdrs.forEach(function (row, i) {
+    if (i === 0) return; // first org already has the real thead above it
+    var hdr = document.createElement('tr');
+    hdr.className = 'col-repeat-hdr';
+    hdr.innerHTML = '<th>Org / License Type</th><th>Org ID</th><th class="r">Contracted</th><th class="r">Provisioned</th><th class="r">Shelfware</th><th class="r">Utilization</th><th class="r">MoM Δ</th><th class="c">Status</th>';
+    tbody.insertBefore(hdr, row);
+  });
+})();
+
+// Archive dropdown — click to open, click outside to close
+(function(){
+  var btn = document.querySelector('.nav-archive-btn');
+  var drop = document.querySelector('.nav-archive-drop');
+  if (!btn || !drop) return;
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    drop.classList.toggle('open');
+  });
+  document.addEventListener('click', function(){
+    drop.classList.remove('open');
+  });
+  drop.addEventListener('click', function(e){ e.stopPropagation(); });
+})();
 </script>
 </body>
 </html>
