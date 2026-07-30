@@ -85,6 +85,7 @@ section{margin-bottom:2.25rem}
 .ac-type-tag{display:inline-block;font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:100px;padding:.1rem .45rem;margin-left:.4rem;vertical-align:middle}
 .ac-type-tag.mc{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE}
 .ac-type-tag.storage{background:#FFF7ED;color:#C2410C;border:1px solid #FED7AA}
+.alert-sub-title{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:1.4rem 0 .6rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
 .ac-lic{font-size:.72rem;color:var(--muted);margin-top:.1rem}
 .ac-row{display:flex;align-items:baseline;gap:.5rem;margin-top:.5rem}
 .ac-pct{font-size:2rem;font-weight:800;line-height:1;color:var(--critical)}
@@ -203,16 +204,27 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
 .org-hdr td:first-child::before{content:"▾ ";font-size:.75rem;opacity:.45}
 .org-hdr.collapsed td:first-child::before{content:"▸ "}
 
-/* PRINT BUTTON */
-.btn-print{display:inline-flex;align-items:center;gap:.35rem;background:var(--sf-navy);color:#fff;border:none;border-radius:var(--radius);padding:.45rem .9rem;font-size:.73rem;font-weight:700;cursor:pointer;letter-spacing:.04em;position:fixed;bottom:1.25rem;right:1.25rem;box-shadow:var(--shadow-md);z-index:99;transition:background .15s}
-.btn-print:hover{background:#054a90}
-
 /* PRINT STYLESHEET */
-@media print{nav,.filter-bar,.btn-print{display:none!important}.main{padding:0!important}.hero{padding:1rem 1.5rem!important}.kpi-row{margin-top:0!important}section{page-break-inside:avoid}.ac{page-break-inside:avoid}.tc{box-shadow:none!important;border:1px solid var(--border)}.alert-grid{grid-template-columns:repeat(2,1fr)}footer{display:none}}
+@page{size:auto;margin:.5in}
+@media print{
+  html,body{height:auto!important;min-height:0!important;overflow:visible!important;display:block!important}
+  nav{display:none!important;position:static!important}
+  .filter-bar,.nav-archive-wrap{display:none!important}
+  #view-current,.report-view,.main{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;display:block!important}
+  .main{padding:0!important}
+  .hero{padding:1rem 1.5rem!important}
+  .kpi-row{margin-top:0!important}
+  section{break-inside:auto;page-break-inside:auto}
+  .ac{break-inside:avoid;page-break-inside:avoid}
+  .tc{box-shadow:none!important;border:1px solid var(--border);overflow:visible!important}
+  .alert-grid{grid-template-columns:repeat(2,1fr)}
+  footer{display:none}
+  .org-hdr ~ tr{display:table-row!important}
+  .org-hdr.collapsed td:first-child::before{content:"▸ "}
+}
 </style>
 </head>
 <body>
-<button class="btn-print" onclick="window.print()">&#128438; Print / Export</button>
 
 <nav>
   <span class="nav-brand">HCSC · Salesforce License Review</span>
@@ -326,6 +338,13 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
         <p class="order-desc">Pending procurement signature.</p>
       </div>
 
+      <div class="order-card">
+        <span class="order-title">HealthSpring Flex Credit Swap</span>
+        <span class="order-quote">Q-11865079</span>
+        <span class="order-close">Close 8/30</span>
+        <p class="order-desc">Pending procurement signature.</p>
+      </div>
+
     </div>
 
     <p class="sub-head">Discussion Topics</p>
@@ -383,6 +402,7 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
       <span class="sec-eye">Action Required</span>
       <h2 class="sec-title">Capacity Alerts — Licenses, Storage &amp; Marketing Cloud</h2>
     </div>
+    <div class="alert-sub-title">Salesforce Licenses</div>
     <div class="alert-grid">
 
       <div class="ac">
@@ -448,8 +468,13 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
         <div class="ac-proj safe">&#8595; Flat &#183; 298 seats remain &#8212; no near-term cap risk (4 months data)</div>
       </div>
 
+    </div>
+
+    <div class="alert-sub-title">Marketing Cloud</div>
+    <div class="alert-grid">
+
       <div class="ac">
-        <div class="ac-org">Enterprise Governance Org <span class="ac-type-tag mc">Marketing Cloud</span></div>
+        <div class="ac-org">Enterprise Governance Org</div>
         <div class="ac-lic">Corporate Edition Contacts &nbsp;·&nbsp; Ent Gov · USA600</div>
         <div class="ac-row"><div class="ac-pct">40×</div><div class="ac-change up">↑ over contracted limit</div></div>
         <div class="ac-used">1,823,767 contacts used &nbsp;·&nbsp; contracted limit: 45,000 &nbsp;·&nbsp; <strong>+1,778,767 over limit</strong></div>
@@ -458,7 +483,7 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
       </div>
 
       <div class="ac">
-        <div class="ac-org">HCSC (Producer) <span class="ac-type-tag mc">Marketing Cloud</span></div>
+        <div class="ac-org">HCSC (Producer)</div>
         <div class="ac-lic">Corporate Edition Contacts &nbsp;·&nbsp; Producer Account</div>
         <div class="ac-row"><div class="ac-pct">99.4%</div><div class="ac-change up">↑ approaching limit</div></div>
         <div class="ac-used">810,158 contacts used of 815,000 contracted &nbsp;·&nbsp; 4,842 remaining</div>
@@ -467,21 +492,26 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
       </div>
 
       <div class="ac warn">
-        <div class="ac-org">Provider Management <span class="ac-type-tag storage">Storage</span></div>
-        <div class="ac-lic">Data Storage &nbsp;·&nbsp; SELA · USA778</div>
-        <div class="ac-row"><div class="ac-pct">93.1%</div><div class="ac-change up">↑ +7 GB MoM</div></div>
-        <div class="ac-used">458.1 GB used of 492.3 GB contracted &nbsp;·&nbsp; 34.2 GB remaining</div>
-        <div class="bar"><div class="bar-fill warn" style="width:93.1%"></div></div>
-        <div class="ac-proj notice">~5 months at current pace (+7 GB/mo)</div>
-      </div>
-
-      <div class="ac warn">
-        <div class="ac-org">HealthSpring GBS <span class="ac-type-tag mc">Marketing Cloud</span></div>
+        <div class="ac-org">HealthSpring GBS</div>
         <div class="ac-lic">Enterprise Plus Edition Contacts</div>
         <div class="ac-row"><div class="ac-pct">92.4%</div><div class="ac-change up">↑ trend</div></div>
         <div class="ac-used">19,393,696 contacts used of 21,000,000 contracted &nbsp;·&nbsp; 1,606,304 remaining</div>
         <div class="bar"><div class="bar-fill warn" style="width:92.4%"></div></div>
         <div class="ac-proj notice">~1.6M contacts remain before limit</div>
+      </div>
+
+    </div>
+
+    <div class="alert-sub-title">Storage</div>
+    <div class="alert-grid">
+
+      <div class="ac warn">
+        <div class="ac-org">Provider Management</div>
+        <div class="ac-lic">Data Storage &nbsp;·&nbsp; SELA · USA778</div>
+        <div class="ac-row"><div class="ac-pct">93.1%</div><div class="ac-change up">↑ +7 GB MoM</div></div>
+        <div class="ac-used">458.1 GB used of 492.3 GB contracted &nbsp;·&nbsp; 34.2 GB remaining</div>
+        <div class="bar"><div class="bar-fill warn" style="width:93.1%"></div></div>
+        <div class="ac-proj notice">~5 months at current pace (+7 GB/mo)</div>
       </div>
 
     </div>
@@ -1203,6 +1233,14 @@ footer{text-align:center;padding:1.5rem;font-size:.72rem;color:var(--muted);bord
             <td>Courtesy order; no charge</td>
           </tr>
           <tr>
+            <td>Tableau — 16 Core License Add-On</td>
+            <td>Health Care Service Corporation (ACE)</td>
+            <td class="mono">Q-11314892</td>
+            <td class="mono">P27486656</td>
+            <td>2026-03-31</td>
+            <td>DocuSign Completed</td>
+          </tr>
+          <tr>
             <td>Marketing Cloud Add-On — Additional Business Units</td>
             <td>HCSC – Dearborn Life Insurance</td>
             <td class="mono">Q-11478877</td>
@@ -1292,6 +1330,42 @@ document.addEventListener('DOMContentLoaded', function () {
         next = next.nextElementSibling;
       }
     });
+  });
+});
+
+// Expand layout containers and org rows before printing, restore after
+window.addEventListener('beforeprint', function () {
+  document.documentElement.style.height = 'auto';
+  document.documentElement.style.overflow = 'visible';
+  document.body.style.height = 'auto';
+  document.body.style.overflow = 'visible';
+  var vc = document.getElementById('view-current');
+  if (vc) { vc.style.height = 'auto'; vc.style.overflow = 'visible'; vc.style.display = 'block'; }
+  document.querySelectorAll('.org-hdr.collapsed').forEach(function (row) {
+    row.classList.add('_print_was_collapsed');
+    row.classList.remove('collapsed');
+    var next = row.nextElementSibling;
+    while (next && !next.classList.contains('org-hdr')) {
+      next.style.display = '';
+      next = next.nextElementSibling;
+    }
+  });
+});
+window.addEventListener('afterprint', function () {
+  document.documentElement.style.height = '';
+  document.documentElement.style.overflow = '';
+  document.body.style.height = '';
+  document.body.style.overflow = '';
+  var vc = document.getElementById('view-current');
+  if (vc) { vc.style.height = ''; vc.style.overflow = ''; vc.style.display = ''; }
+  document.querySelectorAll('.org-hdr._print_was_collapsed').forEach(function (row) {
+    row.classList.add('collapsed');
+    row.classList.remove('_print_was_collapsed');
+    var next = row.nextElementSibling;
+    while (next && !next.classList.contains('org-hdr')) {
+      next.style.display = 'none';
+      next = next.nextElementSibling;
+    }
   });
 });
 </script>
